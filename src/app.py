@@ -1,1 +1,9 @@
-print("Bonjour, ceci est un test de mon application de gestion de mots de passe !")
+
+from database.Database import Database
+
+mydb = Database("GestionnaireMDP")
+
+
+
+
+mydb.close()
