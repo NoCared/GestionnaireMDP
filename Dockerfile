@@ -11,7 +11,7 @@ COPY ./src/requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copiez tout le contenu du dossier src/ dans le conteneur
-COPY ./src/ .
+COPY ./src/ ./src
 
 # Commande par défaut à exécuter lorsque le conteneur est démarré
-CMD ["python", "app.py"]
+CMD ["python", "src/app.py"]
