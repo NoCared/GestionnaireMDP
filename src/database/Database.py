@@ -2,8 +2,8 @@ import psycopg2
 
 
 class Database:
-    def __init__(self,database):
-        self.connect(database)
+    def __init__(self,database,user,password):
+        self.connect(database,user,password)
         self.cursor = self.db.cursor()
         
     def execute(self,sql):
@@ -16,13 +16,14 @@ class Database:
         self.cursor.close()
         self.db.close()
 
-    def connect(self,database):
+    def connect(self,database,user,password):
         self.db = psycopg2.connect(
         host="db",
-        user="paul",
-        password="paul",
+        user=user,
+        password=password,
         database=database
         )
+        print("connected")
 
     def initdatas(self):
         create_table_query = ''' CREATE TABLE IF NOT EXISTS test_table (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, age INT )'''
