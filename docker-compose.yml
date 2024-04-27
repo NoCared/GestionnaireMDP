@@ -6,7 +6,7 @@ services:
     volumes:
       - ./src:/app/src
     ports:
-      - "5000:5000"
+      - "127.0.0.1:5000:5000"  # Redirection du port 5000 de l'hôte vers le port 5000 du conteneur
     depends_on:
       - db
     environment:
@@ -14,8 +14,10 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
+      FLASK_APP: "src/app.py"  # Chemin vers votre fichier app.py
     env_file:
       - .env
+    command: flask run --host=0.0.0.0
 
   db:
     image: postgres:latest
