@@ -18,6 +18,8 @@ services:
     env_file:
       - .env
     command: flask run --host=0.0.0.0
+    stdin_open: true
+    tty: true
 
   db:
     image: postgres:latest
@@ -31,3 +33,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     env_file:
       - .env
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
